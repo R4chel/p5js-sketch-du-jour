@@ -33,7 +33,7 @@ function Art() {
                 });
             this.shapes.push(s);
             r -= 5;
-            bright -= this.noise;
+            bright -= 1;
             
         }
     };
