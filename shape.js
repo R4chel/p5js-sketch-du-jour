@@ -17,7 +17,7 @@ function Shape({
         beginShape();
         for(let i = 0; i < this.numPoints + 3; i++){
             let theta = i * 2 * PI / this.numPoints;
-            let r = this.radius * noise(this.radius*cos(theta),this.radius*sin(theta));
+            let r = this.radius * noise(this.radius*cos(theta)+center.x,this.radius*sin(theta)+center.y);
             let x = r * cos(theta) + center.x;
             let y = r * sin(theta) + center.y;
             curveVertex(x,y);
