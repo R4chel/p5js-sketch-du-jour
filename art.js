@@ -15,18 +15,29 @@ function Art() {
     };
 
     this.addShape = function(point) {
-        let center = point === undefined ? randomPoint() : point;
-        let s =
-            new Shape({
-                center: center,
-                color: this.randomColor(),
-                radius : floor(random(this.minRadius, this.maxRadius)),
-                numPoints : this.numPoints,
-                noise : this.noise,
-            });
-        this.shapes.push(s);
+        let center = point === undefined ? {x:width/2, y : height/2} : point;
+        let initialRadius = this.maxRadius;
+        colorMode(HSB, 100, 100, 100)
+        let hue = floor(random(100));
+        let sat = floor(random(70,100));
+        let bright = 100;
+        let r = floor( this.maxRadius );
+        while(r > this.minRadius){
+            let s =
+                new Shape({
+                    center: center,
+                    color: color(hue, sat, bright),
+                    radius : r, 
+                    numPoints : this.numPoints,
+                    noise : this.noise,
+                });
+            this.shapes.push(s);
+            r -= this.noise * 2;
+            
+        }
     };
 
+    
 
     this.keyPress = function(key) {
         switch (key) {
@@ -36,14 +47,6 @@ function Art() {
             default:
                 console.log("Key not supported", key);
         }
-    };
-
-    this.randomColor = function() {
-        return {
-            r: random(255),
-            g: random(255),
-            b: random(255)
-        };
     };
 
 
@@ -68,4 +71,15 @@ function randomPoint() {
         x: floor(random(0, width)),
         y: floor(random(0, height))
     };
+}
+
+function randomColorRGB () {
+    return {
+        r: random(255),
+        g: random(255),
+        b: random(255)
+    };
+};
+function toColorRGB(x) {
+    return color(x.r, x.g, x.b);
 }

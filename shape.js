@@ -14,7 +14,7 @@ function Shape({
     this.offsets = [...Array(this.numPoints)].map(() => random(-noise,noise));
 
     this.draw = function() {
-        stroke(toColor(this.color));
+        stroke(this.color);
         noFill();
         beginShape();
         for(let i = 0; i < this.numPoints + 3; i++){
@@ -31,6 +31,6 @@ function Shape({
 
 }
 
-function toColor(x) {
+function toColorRGB(x) {
     return color(x.r, x.g, x.b);
 }
