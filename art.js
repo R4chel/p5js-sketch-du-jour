@@ -3,7 +3,9 @@ function Art() {
         this.shapes = [];
         this.background = color(floor(random(255)));
         this.minRadius = min(width,height)/20;
-        this.maxRadius = min(width/height)/5;
+        this.maxRadius = min(width,height)/5;
+        this.noise = 5;
+        this.numPoints = 50;
 
         background(this.background);
     };
@@ -30,6 +32,8 @@ function Art() {
                 center: center,
                 color: this.randomColor(),
                 radius : floor(random(this.minRadius, this.maxRadius)),
+                numPoints : this.numPoints,
+                noise : this.noise,
             });
         this.shapes.push(s);
     };
