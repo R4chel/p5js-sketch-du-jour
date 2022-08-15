@@ -29,10 +29,11 @@ function Art() {
                     color: color(hue, sat, bright),
                     radius : r, 
                     numPoints : this.numPoints,
-                    noise : this.noise,
+                    wiggle : this.noise,
                 });
             this.shapes.push(s);
             r -= this.noise * 2;
+            bright -= this.noise;
             
         }
     };
@@ -55,7 +56,7 @@ function Art() {
         this.background = color(floor(random(255)));
         this.minRadius = min(width,height)/20;
         this.maxRadius = min(width,height)/5;
-        this.noise = 5;
+        this.noise = 1;
         this.numPoints = 50;
 
         background(this.background);
