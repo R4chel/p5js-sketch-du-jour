@@ -15,30 +15,35 @@ function Art() {
     };
 
     this.addShape = function(point) {
-        let center = point === undefined ? {x:width/2, y : height/2} : point;
+        let center = point === undefined ? {
+            x: width / 2,
+            y: height / 2
+        } : point;
         let initialRadius = this.maxRadius;
         colorMode(HSB, 100, 100, 100)
         let hue = floor(random(100));
-        let sat = floor(random(70,100));
+        let sat = floor(random(70, 100));
         let bright = 100;
-        let r = floor( this.maxRadius );
-        while(r > this.minRadius){
+        let r = floor(this.maxRadius);
+
+        let brightnessDelta = 100 * this.radiusDelta / (this.maxRadius - this.minRadius);
+        while (r > this.minRadius) {
             let s =
                 new Shape({
                     center: center,
                     color: color(hue, sat, bright),
-                    radius : r, 
-                    numPoints : this.numPoints,
-                    wiggle : this.noise,
+                    radius: r,
+                    numPoints: floor(this.numPoints + random(-5, 5)),
+                    wiggle: this.noise,
                 });
             this.shapes.push(s);
-            r -= 5;
+            r -= this.radiusDelta;
             bright -= 1;
-            
+
         }
     };
 
-    
+
 
     this.keyPress = function(key) {
         switch (key) {
@@ -54,14 +59,19 @@ function Art() {
     this.init = function() {
         this.shapes = [];
         this.background = color(floor(random(255)));
-        this.minRadius = min(width,height)/50;
-        this.maxRadius = min(width,height)/2.1;
-        this.noise = 10;
+        this.minRadius = min(width, height) / 50;
+        this.maxRadius = min(width, height) / 2.1;
+        this.noise = 5;
         this.numPoints = 10;
+        this.radiusDelta = 5;
+
 
         background(this.background);
 
-        this.addShape({x:width/2, y : height/2});
+        this.addShape({
+            x: width / 2,
+            y: height / 2
+        });
     };
     this.init();
 
@@ -74,13 +84,14 @@ function randomPoint() {
     };
 }
 
-function randomColorRGB () {
+function randomColorRGB() {
     return {
         r: random(255),
         g: random(255),
         b: random(255)
     };
 };
+
 function toColorRGB(x) {
     return color(x.r, x.g, x.b);
 }
