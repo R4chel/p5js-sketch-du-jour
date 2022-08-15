@@ -16,8 +16,6 @@ function setup() {
     let canvas = createCanvas(canvasWidth, canvasHeight); 
     canvas.mouseClicked(canvasMouseClicked);
     art = new Art();
-
-    art.addShape();
 }
 
 function keyPressed(event){

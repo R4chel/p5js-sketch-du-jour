@@ -1,15 +1,4 @@
 function Art() {
-    this.init = function() {
-        this.shapes = [];
-        this.background = color(floor(random(255)));
-        this.minRadius = min(width,height)/20;
-        this.maxRadius = min(width,height)/5;
-        this.noise = 5;
-        this.numPoints = 50;
-
-        background(this.background);
-    };
-    this.init();
 
     this.draw = function() {
         background(this.background);
@@ -56,6 +45,21 @@ function Art() {
             b: random(255)
         };
     };
+
+
+    this.init = function() {
+        this.shapes = [];
+        this.background = color(floor(random(255)));
+        this.minRadius = min(width,height)/20;
+        this.maxRadius = min(width,height)/5;
+        this.noise = 5;
+        this.numPoints = 50;
+
+        background(this.background);
+
+        this.addShape({x:width/2, y : height/2});
+    };
+    this.init();
 
 }
 
