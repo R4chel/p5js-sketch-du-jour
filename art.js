@@ -32,7 +32,7 @@ function Art() {
                     wiggle : this.noise,
                 });
             this.shapes.push(s);
-            r -= this.noise * 2;
+            r -= 5;
             bright -= this.noise;
             
         }
@@ -54,10 +54,10 @@ function Art() {
     this.init = function() {
         this.shapes = [];
         this.background = color(floor(random(255)));
-        this.minRadius = min(width,height)/20;
-        this.maxRadius = min(width,height)/5;
-        this.noise = 1;
-        this.numPoints = 50;
+        this.minRadius = min(width,height)/50;
+        this.maxRadius = min(width,height)/2.1;
+        this.noise = 10;
+        this.numPoints = 10;
 
         background(this.background);
 

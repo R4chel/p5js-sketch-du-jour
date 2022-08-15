@@ -37,7 +37,8 @@ function Shape({
             p.x = p.r*cos(p.theta) + center.x;
             p.y = p.r*sin(p.theta) + center.y;
         }
-        this.z++;
+        this.z+=10;
+       
     };
 
 }
