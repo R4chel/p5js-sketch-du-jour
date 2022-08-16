@@ -27,14 +27,16 @@ function Art() {
         let r = floor(this.maxRadius);
 
         let brightnessDelta = 100 * this.radiusDelta / (this.maxRadius - this.minRadius);
+        
+        let wiggle = random(this.minWiggle, this.maxWiggle);
         while (r > this.minRadius) {
             let s =
                 new Shape({
                     center: center,
                     color: color(hue, sat, bright),
                     radius: r,
-                    numPoints: floor(this.numPoints + random(-5, 5)),
-                    wiggle: this.noise,
+                    numPoints: this.numPoints,
+                    wiggle: wiggle,
                 });
             this.shapes.push(s);
             r -= this.radiusDelta;
@@ -61,7 +63,8 @@ function Art() {
         this.background = color(floor(random(255)));
         this.minRadius = min(width, height) / 50;
         this.maxRadius = min(width, height) / 2.1;
-        this.noise = 5;
+        this.maxWiggle = 15;
+        this.minWiggle = 1;
         this.numPoints = 10;
         this.radiusDelta = 5;
 
